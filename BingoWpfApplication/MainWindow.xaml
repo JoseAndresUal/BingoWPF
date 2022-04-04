@@ -1,0 +1,74 @@
+﻿<Window x:Class="BingoWpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Left="1" Top="1"
+        
+        Title="MainWindow" Height="1200" Width="2400" >
+
+        <Grid x:Name="Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="262*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="748*"/>
+            <RowDefinition Height="110*"/>
+            <RowDefinition Height="48*"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="CanvasBombo"   Grid.Row="1" Grid.Column="0" Margin="0,0,10,0" >
+            <Ellipse x:Name="Uno"
+      Canvas.Top="10"
+      Canvas.Left="10"
+      Fill="#FFFFFF00"
+      Height="80"
+      Width="80"
+      StrokeThickness="5"
+      Stroke="#FF0000FF">
+                <Ellipse.RenderTransform>
+                    <RotateTransform Angle="0"/>
+                </Ellipse.RenderTransform>
+
+            </Ellipse>
+            <Polyline Points="20,30 40,20 40,60" 
+                Stroke="Blue" StrokeThickness="10"
+                 Canvas.Left="10" Canvas.Top="10" Width="80" Height="80">
+                <Polyline.RenderTransform>
+                    <RotateTransform Angle="0"/>
+                </Polyline.RenderTransform>
+
+            </Polyline>
+
+
+        </Canvas>
+
+        <Canvas x:Name="CanvasCarton"  Grid.Row="1" Grid.Column="1"  />
+
+        <Canvas x:Name="CanvasAnimacion"  Grid.Row="2" Grid.ColumnSpan="2" >
+            <Path Fill="Maroon" >
+                <Path.Data>
+                    <!-- Describes an ellipse. -->
+                    <EllipseGeometry x:Name="AnimatedEllipse" Center="800,50" RadiusX="20" RadiusY="20" />
+                </Path.Data>
+
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Path.Loaded">
+                        <BeginStoryboard Name="BeginStoryboard">
+                            <Storyboard>
+                                <PointAnimation Storyboard.TargetProperty="Center" Storyboard.TargetName="AnimatedEllipse" Duration="0:0:1" From="800,30" To="20,30"  />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+        </Canvas>
+
+
+        <Button x:Name="SacaBolaButton" Content="Saca Bola" HorizontalAlignment="Left" Grid.Row ="0"  VerticalAlignment="Center" Width="112" Click="AddButton_Click" Height="36" Margin="10,10,0,17.2" />
+
+        <Button x:Name="NuevoCarton" Content="Nuevo Carton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="96" Click="NewCartonButton_Click" Height="32"   />
+
+
+    </Grid>
+  
+</Window>
